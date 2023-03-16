@@ -31,10 +31,13 @@ def print_fixed_width_table(table: dict[str, list[Any]]) -> None:
 
     # Print each row with separators
     for row in values:
-        print("| " + " | ".join("{:{}}".format(x, w) for x, w in zip(row, widths)) + " |")
+        print(
+            "| " + " | ".join("{:{}}".format(x, w) for x, w in zip(row, widths)) + " |"
+        )
 
     # Print the footer with separators
     print("-" * (sum(widths) + len(keys) * 3 - 1))
+
 
 def get_major_minor_numbers(device_path: str) -> tuple[int, int]:
     device_number: int = os.stat(device_path).st_rdev
@@ -115,9 +118,9 @@ def parse_stats_and_print_diff(device_name: str) -> None:
         diff: int = value - old_stats[key]
         avg: float = round(diff / seconds_passed, 2)
 
-        table['stat'].append(key)
-        table['diff'].append(diff)
-        table['avg'].append(avg)
+        table["stat"].append(key)
+        table["diff"].append(diff)
+        table["avg"].append(avg)
 
     print_fixed_width_table(table)
 

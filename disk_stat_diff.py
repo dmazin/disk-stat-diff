@@ -77,6 +77,10 @@ def parse_stats_from_file(filepath: str) -> dict[str, int]:
         stats_dict["flush_ios"] = int(stats[15])
         stats_dict["flush_ticks"] = int(stats[16])
 
+        # Per the
+        # [documentation](https://www.kernel.org/doc/html/latest/block/stat.html#read-sectors-write-sectors-discard-sectors),
+        # read_sectors etc is given in 512 byte blocks, so we can use this to
+        # make the _sectors fields use bytes.
         stats_dict["read_bytes"] = stats_dict["read_sectors"] * 512
         stats_dict["write_bytes"] = stats_dict["write_sectors"] * 512
         stats_dict["discard_bytes"] = stats_dict["discard_sectors"] * 512

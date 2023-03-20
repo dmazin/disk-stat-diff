@@ -24,19 +24,12 @@ def print_fixed_width_table(table: dict[str, list[Any]]) -> None:
     for i in range(len(keys)):
         widths.append(max(len(str(x[i])) for x in values + [keys]))
 
-    # Print the header with separators
-    print("-" * (sum(widths) + len(keys) * 3 - 1))
-    print("| " + " | ".join("{:{}}".format(x, w) for x, w in zip(keys, widths)) + " |")
-    print("-" * (sum(widths) + len(keys) * 3 - 1))
+    # Print the header without separators
+    print(" ".join("{:{}}".format(x, w) for x, w in zip(keys, widths)))
 
-    # Print each row with separators
+    # Print each row without separators
     for row in values:
-        print(
-            "| " + " | ".join("{:{}}".format(x, w) for x, w in zip(row, widths)) + " |"
-        )
-
-    # Print the footer with separators
-    print("-" * (sum(widths) + len(keys) * 3 - 1))
+        print(" ".join("{:{}}".format(x, w) for x, w in zip(row, widths)))
 
 
 def get_major_minor_numbers(device_path: str) -> tuple[int, int]:

@@ -133,7 +133,7 @@ def store_stats_first_time(device_name: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Provide a device name. e.g. `python3 disk-stat-diff.py sda1`")
+        print("Provide a device name. e.g. `disk_stat_diff sda1`")
         exit(1)
     device_name: str = sys.argv[1]
 

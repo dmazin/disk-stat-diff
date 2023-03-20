@@ -108,18 +108,16 @@ def parse_stats_and_print_diff(device_name: str) -> None:
 
     print(f"Difference over the past {round(seconds_passed, 2)} second(s).")
 
-    # Calculate stats like `diff` and `avg` and store them in a dict so that
+    # Calculate stats like `diff` and store them in a dict so that
     # they can be parsed by `print_fixed_width_table`.
     table: dict[str, list[Any]] = defaultdict(list)
     key: str
     value: int
     for key, value in new_stats.items():
         diff: int = value - old_stats[key]
-        avg: float = round(diff / seconds_passed, 2)
 
         table["stat"].append(key)
         table["diff"].append(diff)
-        table["avg"].append(avg)
 
     print_fixed_width_table(table)
 
